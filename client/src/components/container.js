@@ -1,12 +1,11 @@
-import { BsFillPlusCircleFill } from "react-icons/bs";
+import TodoList from "./TodoList";
+import AddTodo from "./AddTodo";
 
-const Container = () => {
+const Container = ({ handleNewTodo, todoList }) => {
   return (
     <section className="container">
-      <section className="todo-input-container">
-        <input type="text" className="todo-input" />
-        <BsFillPlusCircleFill className="input-icon" />
-      </section>
+      <AddTodo handleNewTodo={handleNewTodo} />
+      <TodoList todoList={todoList} />
     </section>
   );
 };
