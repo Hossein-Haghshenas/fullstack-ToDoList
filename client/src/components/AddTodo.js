@@ -6,7 +6,7 @@ const AddTodo = ({ handleNewTodo }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    handleNewTodo(newTodo);
+    newTodo !== "" ? handleNewTodo(newTodo) : alert("Please enter something !");
     setNewTodo("");
   };
 
