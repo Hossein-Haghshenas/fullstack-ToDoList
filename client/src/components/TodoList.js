@@ -1,11 +1,21 @@
-const TodoList = ({ todoList }) => {
-  console.log(todoList);
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+const TodoList = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    try {
+      axios.get("http://localhost:5000").then((res) => setData(res.data));
+    } catch (error) {}
+  }, []);
+  console.log(data);
   return (
     <section className="todo-list">
       <ul>
-        {todoList.map((todo) => {
+        {data?.map((todo) => {
           const { text, id } = todo;
+
           return (
             <li className="todo-item" key={id}>
               {text}
