@@ -6,10 +6,10 @@ const TodoList = () => {
 
   useEffect(() => {
     try {
-      axios.get("http://localhost:5000").then((res) => setData(res.data));
+      axios.get("http://localhost:5000").then((res) => setData(res.data.todos));
     } catch (error) {}
   }, []);
-  console.log(data);
+
   return (
     <section className="todo-list">
       <ul>
