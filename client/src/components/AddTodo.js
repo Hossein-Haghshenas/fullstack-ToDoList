@@ -1,13 +1,28 @@
 import { useState } from "react";
-import { BsFillPlusCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { createTodo } from "../api/todoApi";
 
 const AddTodo = ({ handleNewTodo }) => {
-  const [newTodo, setNewTodo] = useState("");
+  const navigate = useNavigate();
+  const [newTodoText, setNewTodoText] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
-    newTodo !== "" ? handleNewTodo(newTodo) : alert("Please enter something !");
-    setNewTodo("");
+    newTodoText !== ""
+      ? newTodo(newTodoText)
+      : alert("Please enter something !");
+    setNewTodoText("");
+  };
+
+  const newTodo = (todoText) => {
+    const setNewTodo = {
+      id: nanoid(),
+      text: todoText,
+    };
+    createTodo(setNewTodo);
+    navigate(0);
   };
 
   return (
@@ -16,11 +31,12 @@ const AddTodo = ({ handleNewTodo }) => {
         <input
           type="text"
           className="todo-input"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="new Todo"
+          value={newTodoText}
+          onChange={(e) => setNewTodoText(e.target.value)}
         />
         <button type="submit" className="input-icon" onClick={handleClick}>
-          <BsFillPlusCircleFill />
+          <AiOutlinePlusCircle />
         </button>
       </form>
     </section>
