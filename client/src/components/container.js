@@ -1,10 +1,10 @@
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 
-const Container = ({ handleNewTodo, todoList }) => {
+const Container = ({ todoList }) => {
   return (
     <section className="container">
-      <AddTodo handleNewTodo={handleNewTodo} />
+      <AddTodo />
       <TodoList todoList={todoList} />
     </section>
   );
