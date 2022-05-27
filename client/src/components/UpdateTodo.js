@@ -5,7 +5,7 @@ import { Modal, Button, Text, Input } from "@nextui-org/react";
 import { MdEdit } from "react-icons/md";
 import { updateTodos } from "../api/todoApi";
 
-const UpdateTodo = ({ id, text }) => {
+const UpdateTodo = ({ todoId, text }) => {
   const navigate = useNavigate();
   const [newTodo, setNewTodo] = useState(text);
   const [visible, setVisible] = useState(false);
@@ -53,7 +53,6 @@ const UpdateTodo = ({ id, text }) => {
           <Input
             underlined
             clearable
-            bordered
             fullWidth
             color="secondary"
             size="lg"
@@ -70,7 +69,7 @@ const UpdateTodo = ({ id, text }) => {
             type="submit"
             color="secondary"
             auto
-            onClick={() => editHandler(id)}
+            onClick={() => editHandler(todoId)}
           >
             Update
           </Button>
