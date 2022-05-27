@@ -68,8 +68,8 @@ const AddTodo = ({ handleNewTodo }) => {
           <input
             type="number"
             className="todo-input todo-timer-input"
-            placeholder="set your time... "
-            onChange={(e) => setNewTodoTime(e.target.value)}
+            placeholder="How much minutes ? "
+            onChange={(e) => setNewTodoTime(e.target.value * 60)}
             style={visible}
           />
         </section>

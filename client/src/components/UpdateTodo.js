@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Text, Input } from "@nextui-org/react";
 import { MdEdit } from "react-icons/md";
@@ -23,7 +22,6 @@ const UpdateTodo = ({ todoId, text }) => {
 
   const editHandler = (id) => {
     const addNewTodo = {
-      id: nanoid(),
       text: newTodo,
     };
     updateTodos(id, addNewTodo);
