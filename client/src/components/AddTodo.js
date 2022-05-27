@@ -24,6 +24,7 @@ const AddTodo = ({ handleNewTodo }) => {
       text: todoText,
       time: todotime,
       date: new Date(),
+      statusColor: "#7828c84b",
     };
     createTodo(setNewTodo);
     setTimer(false);

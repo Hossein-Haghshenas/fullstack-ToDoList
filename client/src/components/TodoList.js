@@ -25,9 +25,13 @@ const TodoList = () => {
     <section className="todo-list">
       <ul>
         {data?.map((todo) => {
-          const { text, _id, time, date } = todo;
+          const { text, _id, time, date, statusColor } = todo;
           return (
-            <li className="todo-item" key={_id}>
+            <li
+              className="todo-item"
+              key={_id}
+              style={{ backgroundColor: `${statusColor}` }}
+            >
               <p>
                 {_id === boldElement && isBold === true ? <b>{text}</b> : text}
               </p>
@@ -43,7 +47,12 @@ const TodoList = () => {
                   </button>
                 </span>
                 {time !== null && (
-                  <Timer timeValue={time} dateValue={date} todoId={_id} />
+                  <Timer
+                    timeValue={time}
+                    dateValue={date}
+                    todoId={_id}
+                    colorHandler={statusColor}
+                  />
                 )}
               </span>
             </li>

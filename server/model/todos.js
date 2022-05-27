@@ -10,6 +10,7 @@ const TodoSchema = new Schema({
   id: String,
   time: Number,
   date: String,
+  statusColor: String,
 });
 
 module.exports = model("TodoList", TodoSchema);
