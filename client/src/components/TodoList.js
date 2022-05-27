@@ -42,7 +42,9 @@ const TodoList = () => {
                     <AiFillStar />
                   </button>
                 </span>
-                {time !== null && <Timer timeValue={time} dateValue={date} />}
+                {time !== null && (
+                  <Timer timeValue={time} dateValue={date} todoId={_id} />
+                )}
               </span>
             </li>
           );

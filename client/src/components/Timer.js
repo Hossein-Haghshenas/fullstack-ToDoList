@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { updateTodos } from "../api/todoApi";
 
-const Timer = ({ timeValue, dateValue }) => {
+const Timer = ({ timeValue, dateValue, todoId }) => {
+  const navigate = useNavigate();
   // We need ref in this, because we are dealing
   // with JS setInterval to keep track of it and
   // stop it when needed
@@ -76,14 +79,20 @@ const Timer = ({ timeValue, dateValue }) => {
   // the countdown is via action event from the
   // button first we create function to be called
   // by the button
-  const onClickReset = () => {
-    console.log(new Date(dateValue).toLocaleString());
-    clearTimer(getDeadTime());
+  const onClickReset = (id) => {
+    const addNewTime = {
+      time: 0,
+    };
+    if (timeValue !== 0) {
+      updateTodos(id, addNewTime);
+      navigate(0);
+      clearTimer(getDeadTime());
+    }
   };
 
   return (
     <span>
-      <span className="todo-timer" onClick={onClickReset}>
+      <span className="todo-timer" onClick={() => onClickReset(todoId)}>
         {timer}
       </span>
     </span>
