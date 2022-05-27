@@ -5,13 +5,13 @@
   display: flex;
   justify-content: space-around;
 }
-.navbar button {
+.nav-btn {
   position: absolute;
   top: -0.2rem;
   left: 1rem;
   z-index: 1;
 }
-.navbar button:nth-child(2) {
+.history-btn {
   left: 5rem;
 }
 
