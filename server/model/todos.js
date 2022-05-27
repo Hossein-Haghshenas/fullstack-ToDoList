@@ -8,6 +8,8 @@ const TodoSchema = new Schema({
     required: true,
   },
   id: String,
+  time: Number,
+  date: String,
 });
 
 module.exports = model("TodoList", TodoSchema);
