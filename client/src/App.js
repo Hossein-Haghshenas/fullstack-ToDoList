@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Container from "./components/Container";
 import Navbar from "./components/Navbar";
+import Container from "./components/Container";
 import History from "./components/History";
 import "./App.css";
 
