@@ -15,6 +15,12 @@
   left: 5rem;
 }
 
+.navbar-inputs {
+  margin-left: 6rem;
+  width: 50%;
+  z-index: 15;
+}
+
 .container {
   display: flex;
   flex-direction: column;

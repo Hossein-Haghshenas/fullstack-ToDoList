@@ -5,7 +5,7 @@ import UpdateTodo from "./UpdateTodo";
 import DeleteTodo from "./DeleteTodo";
 import Timer from "./Timer";
 
-const TodoList = () => {
+const TodoList = ({ searchText }) => {
   const [data, setData] = useState([]);
   const [isBold, setIsBold] = useState(false);
   const [boldElement, setBoldElement] = useState("");
@@ -24,40 +24,46 @@ const TodoList = () => {
   return (
     <section className="todo-list">
       <ul>
-        {data?.map((todo) => {
-          const { text, _id, time, date, statusColor } = todo;
-          return (
-            <li
-              className="todo-item"
-              key={_id}
-              style={{ backgroundColor: `${statusColor}` }}
-            >
-              <p>
-                {_id === boldElement && isBold === true ? <b>{text}</b> : text}
-              </p>
-              <span className="todo-options">
-                <span className="todo-btns">
-                  <DeleteTodo todoId={_id} />
-                  <UpdateTodo todoId={_id} text={text} />
-                  <button
-                    className="star-icon"
-                    onClick={() => starHandler(_id)}
-                  >
-                    <AiFillStar />
-                  </button>
+        {data
+          ?.filter((todo) => todo.text.includes(searchText))
+          .map((todo) => {
+            const { text, _id, time, date, statusColor } = todo;
+            return (
+              <li
+                className="todo-item"
+                key={_id}
+                style={{ backgroundColor: `${statusColor}` }}
+              >
+                <p>
+                  {_id === boldElement && isBold === true ? (
+                    <b>{text}</b>
+                  ) : (
+                    text
+                  )}
+                </p>
+                <span className="todo-options">
+                  <span className="todo-btns">
+                    <DeleteTodo todoId={_id} />
+                    <UpdateTodo todoId={_id} text={text} />
+                    <button
+                      className="star-icon"
+                      onClick={() => starHandler(_id)}
+                    >
+                      <AiFillStar />
+                    </button>
+                  </span>
+                  {time !== null && (
+                    <Timer
+                      timeValue={time}
+                      dateValue={date}
+                      todoId={_id}
+                      colorHandler={statusColor}
+                    />
+                  )}
                 </span>
-                {time !== null && (
-                  <Timer
-                    timeValue={time}
-                    dateValue={date}
-                    todoId={_id}
-                    colorHandler={statusColor}
-                  />
-                )}
-              </span>
-            </li>
-          );
-        })}
+              </li>
+            );
+          })}
       </ul>
     </section>
   );

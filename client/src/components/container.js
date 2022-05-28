@@ -1,11 +1,11 @@
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 
-const Container = () => {
+const Container = ({ searchText }) => {
   return (
     <section className="container">
       <AddTodo />
-      <TodoList />
+      <TodoList searchText={searchText} />
     </section>
   );
 };
