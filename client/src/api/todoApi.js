@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:5000";
+const baseUrl = "https://mytodolistapp2022.herokuapp.com";
 
 const createTodo = (todo) => {
   try {
