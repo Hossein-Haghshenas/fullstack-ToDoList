@@ -7,9 +7,7 @@ const History = () => {
 
   useEffect(() => {
     try {
-      axios
-        .get("https://mytodolistapp2022.herokuapp.com")
-        .then((res) => setData(res.data.todos));
+      axios.get("http://localhost:5000").then((res) => setData(res.data.todos));
     } catch (error) {}
   }, []);
 
