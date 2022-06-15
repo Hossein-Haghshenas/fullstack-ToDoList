@@ -26,9 +26,7 @@ const AddTodo = ({ handleNewTodo }) => {
       date: new Date(),
       statusColor: "#7828c84b",
     };
-    createTodo(setNewTodo);
-    setTimer(false);
-    navigate(0);
+    createTodo(setNewTodo, navigate);
   };
 
   const hidden = timer ? { visibility: "hidden" } : { visibility: "visible" };

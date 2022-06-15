@@ -13,7 +13,7 @@ const TodoList = ({ searchText }) => {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:5000/")
+        .get("https://mytodolistapp2022.herokuapp.com/")
         .then((res) => setData(res.data.todos));
     } catch (error) {}
   }, []);

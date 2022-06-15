@@ -5,8 +5,7 @@ import { deleteTodo } from "../api/todoApi";
 const DeleteTodo = ({ todoId }) => {
   const navigate = useNavigate();
   const deleteHandler = (id) => {
-    deleteTodo(id);
-    navigate(0);
+    deleteTodo(id, navigate);
   };
   return (
     <>

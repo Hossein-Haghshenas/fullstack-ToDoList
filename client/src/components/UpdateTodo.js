@@ -24,9 +24,8 @@ const UpdateTodo = ({ todoId, text }) => {
     const addNewTodo = {
       text: newTodo,
     };
-    updateTodos(id, addNewTodo);
+    updateTodos(id, addNewTodo, navigate);
     closeHandler();
-    navigate(0);
   };
 
   return (
