@@ -2,11 +2,12 @@ import axios from "axios";
 
 const baseUrl = "https://mytodolistapp2022.herokuapp.com";
 
-const createTodo = (todo, navigate) => {
+const createTodo = (todo) => {
   try {
-    axios
+    const status = axios
       .post(baseUrl, todo)
-      .then((data) => data.status === 200 && navigate(0));
+      .then((data) => data.status === 200 && true);
+    return status;
   } catch (error) {
     console.log(error);
   }

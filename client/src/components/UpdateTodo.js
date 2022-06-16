@@ -54,6 +54,7 @@ const UpdateTodo = ({ todoId, text }) => {
             color="secondary"
             size="lg"
             placeholder="NewTodo"
+            aria-label="NewTodo"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />

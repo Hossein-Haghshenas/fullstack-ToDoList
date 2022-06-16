@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { createTodo } from "../api/todoApi";
 
-const AddTodo = ({ handleNewTodo }) => {
+const AddTodo = ({ handleNewTodo, statusHandler }) => {
   const navigate = useNavigate();
   const [newTodoText, setNewTodoText] = useState("");
   const [timer, setTimer] = useState(false);
   const [newTodoTime, setNewTodoTime] = useState(null);
+  const [callStatus, setCallStatus] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -26,8 +27,15 @@ const AddTodo = ({ handleNewTodo }) => {
       date: new Date(),
       statusColor: "#7828c84b",
     };
-    createTodo(setNewTodo, navigate);
+    createTodo(setNewTodo).then((status) => status && setCallStatus(true));
   };
+
+  if (callStatus === true) {
+    statusHandler(callStatus);
+    setCallStatus(false);
+  } else {
+    statusHandler(callStatus);
+  }
 
   const hidden = timer ? { visibility: "hidden" } : { visibility: "visible" };
   const visible = timer ? { visibility: "visible" } : { visibility: "hidden" };
