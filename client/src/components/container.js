@@ -14,7 +14,7 @@ const Container = ({ searchText }) => {
       {callStatus ? (
         <Grid>
           <Loading color="secondary" textColor="secondary">
-            Secondary
+            Please wait
           </Loading>
         </Grid>
       ) : (
