@@ -4,6 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import UpdateTodo from "./UpdateTodo";
 import DeleteTodo from "./DeleteTodo";
 import Timer from "./Timer";
+import { Loading, Grid } from "@nextui-org/react";
 
 const TodoList = ({ searchText }) => {
   const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ const TodoList = ({ searchText }) => {
   useEffect(() => {
     try {
       axios
-        .get("https://mytodolistapp2022.herokuapp.com/")
+        .get("https://mytodolistapp2022.herokuapp.com")
         .then((res) => setData(res.data.todos));
     } catch (error) {}
   }, []);
@@ -24,49 +25,59 @@ const TodoList = ({ searchText }) => {
   };
 
   return (
-    <section className="todo-list">
-      <ul>
-        {data
-          ?.filter((todo) => todo.text.includes(searchText))
-          .map((todo) => {
-            const { text, _id, time, date, statusColor } = todo;
-            return (
-              <li
-                className="todo-item"
-                key={_id}
-                style={{ backgroundColor: `${statusColor}` }}
-              >
-                <p>
-                  {_id === boldElement && isBold === true ? (
-                    <b>{text}</b>
-                  ) : (
-                    text
-                  )}
-                </p>
-                <span className="todo-options">
-                  <span className="todo-btns">
-                    <DeleteTodo todoId={_id} />
-                    <UpdateTodo todoId={_id} text={text} />
-                    <button
-                      className="star-icon"
-                      onClick={() => starHandler(_id)}
-                    >
-                      <AiFillStar />
-                    </button>
-                  </span>
-                  {time !== null && (
-                    <Timer
-                      timeValue={time}
-                      dateValue={date}
-                      todoId={_id}
-                      colorHandler={statusColor}
-                    />
-                  )}
-                </span>
-              </li>
-            );
-          })}
-      </ul>
+    <section className="list-container">
+      {Object.keys(data).length === 0 ? (
+        <Grid>
+          <Loading color="secondary" textColor="secondary">
+            Please wait
+          </Loading>
+        </Grid>
+      ) : (
+        <section className="todo-list">
+          <ul>
+            {data
+              ?.filter((todo) => todo.text.includes(searchText))
+              .map((todo) => {
+                const { text, _id, time, date, statusColor } = todo;
+                return (
+                  <li
+                    className="todo-item"
+                    key={_id}
+                    style={{ backgroundColor: `${statusColor}` }}
+                  >
+                    <p>
+                      {_id === boldElement && isBold === true ? (
+                        <b>{text}</b>
+                      ) : (
+                        text
+                      )}
+                    </p>
+                    <span className="todo-options">
+                      <span className="todo-btns">
+                        <DeleteTodo todoId={_id} />
+                        <UpdateTodo todoId={_id} text={text} />
+                        <button
+                          className="star-icon"
+                          onClick={() => starHandler(_id)}
+                        >
+                          <AiFillStar />
+                        </button>
+                      </span>
+                      {time !== null && (
+                        <Timer
+                          timeValue={time}
+                          dateValue={date}
+                          todoId={_id}
+                          colorHandler={statusColor}
+                        />
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
+          </ul>
+        </section>
+      )}
     </section>
   );
 };
