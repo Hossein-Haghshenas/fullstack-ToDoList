@@ -1,17 +1,10 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { BiHome, BiHistory, BiLogIn } from "react-icons/bi";
 import { MdDashboardCustomize } from "react-icons/md";
 
-const Header = ({ searchHandler }) => {
-  const [searchText, setSearchText] = useState("");
-
-  const searchInputHandler = (e) => {
-    setSearchText(e.target.value);
-    searchHandler(searchText);
-  };
+const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -69,15 +62,6 @@ const Header = ({ searchHandler }) => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      {/*  <section className="navbar-inputs">
-        <Input
-          placeholder="Search..."
-          status="secondary"
-          value={searchText}
-          onChange={(e) => searchInputHandler(e)}
-          aria-label="search"
-        />
-      </section> */}
     </Navbar>
   );
 };

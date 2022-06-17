@@ -13,9 +13,14 @@ function App() {
   };
   return (
     <>
-      <Header searchHandler={searchHandler} />
+      <Header />
       <Routes>
-        <Route path="/" element={<Container searchText={searchText} />} />
+        <Route
+          path="/"
+          element={
+            <Container searchHandler={searchHandler} searchText={searchText} />
+          }
+        />
         <Route path="/history" element={<History searchText={searchText} />} />
       </Routes>
     </>
