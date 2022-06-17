@@ -7,14 +7,11 @@
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 95vh;
-  background: rgb(36, 36, 36);
+  background: #fff;
 }
 
-a {
+a,
+a:hover {
   text-decoration: none;
   color: inherit;
 }

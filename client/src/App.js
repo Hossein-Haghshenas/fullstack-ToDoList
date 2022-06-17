@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Container from "./components/Container";
 import History from "./components/History";
 import "./App.css";
@@ -13,7 +13,7 @@ function App() {
   };
   return (
     <>
-      <Navbar searchHandler={searchHandler} />
+      <Header searchHandler={searchHandler} />
       <Routes>
         <Route path="/" element={<Container searchText={searchText} />} />
         <Route path="/history" element={<History searchText={searchText} />} />
