@@ -11,24 +11,23 @@
   margin-left: 0.3rem;
 }
 
-.navbar-inputs {
-  margin-left: 6rem;
-  width: 50%;
-  z-index: 15;
-}
-
 .main-page {
-  padding: 4rem;
   background: rgb(240, 240, 240);
   z-index: 10;
 }
 
 .todo-container {
-  width: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-.todo-input-container {
-  position: relative;
+.search-input {
+  width: 100%;
 }
 
 .todo-input {
@@ -76,9 +75,9 @@
 
 .todo-list {
   width: 100%;
-  margin: 0.7rem 1rem;
-  height: 14rem;
-  overflow-y: auto;
+  margin-top: 4rem;
+  background: #fff;
+  border-radius: 1rem;
 }
 .todo-list::-webkit-scrollbar {
   display: none;
@@ -114,25 +113,27 @@
 
 .todo-timer {
   display: block;
-  border: 1px solid rgb(100, 100, 100);
-  border-radius: 1rem;
+  border: 1px solid rgb(228, 228, 228);
+  color: rgb(228, 228, 228);
+  border-radius: 0.5rem;
   margin-top: 0.3rem;
   text-align: center;
 }
 
-.todo-item span button {
+.todo-btns button {
   display: flex;
   padding: 0.2rem;
   align-items: center;
-  background: rgb(34, 34, 34);
-  border: 0.5px solid black;
+  background: rgb(255, 255, 255);
+  border: 0.5px solid rgb(255, 255, 255);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.5s ease;
 }
 
-.todo-item span button:hover {
-  background: #fff;
+.todo-btns button:hover {
+  background: rgb(31, 31, 31);
+  border-color: rgb(31, 31, 31);
 }
 
 .delete-icon {
