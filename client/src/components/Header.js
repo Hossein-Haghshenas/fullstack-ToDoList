@@ -42,7 +42,7 @@ const Header = () => {
             {/* dashboard btn */}
 
             <Button color="gradient" className="nav-btn" auto ghost>
-              <NavLink to="/history">
+              <NavLink to="/dashboard">
                 <span>
                   <MdDashboardCustomize></MdDashboardCustomize>
                 </span>
@@ -52,7 +52,7 @@ const Header = () => {
           </Nav>
           <Nav>
             <Button color="gradient" className="nav-btn" auto ghost>
-              <NavLink to="#memes">
+              <NavLink to="/login">
                 <span>
                   <BiLogIn></BiLogIn>
                 </span>
