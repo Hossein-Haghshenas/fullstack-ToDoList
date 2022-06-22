@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import History from "./components/History";
+import Login from "./components/Login";
+import RegisterPage from "./components/RegisterPage";
 import "./App.css";
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
   return (
     <>
       <Header />
+
       <Routes>
         <Route
           path="/"
@@ -22,6 +25,8 @@ function App() {
           }
         />
         <Route path="/history" element={<History searchText={searchText} />} />
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
       </Routes>
     </>
   );
