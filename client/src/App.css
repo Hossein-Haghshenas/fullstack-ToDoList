@@ -148,3 +148,139 @@
 .star-icon {
   color: rgb(228, 167, 0);
 }
+
+/* login page */
+
+.login-page {
+  height: 91vh;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    180deg,
+    rgba(33, 37, 41, 1) 23%,
+    rgba(28, 41, 93, 1) 61%,
+    rgba(41, 25, 111, 1) 93%
+  );
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 18rem;
+  height: 20rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 3px 1px rgb(141, 141, 141);
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.signup-link {
+  color: rgb(76, 0, 255);
+}
+
+/* signup page */
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  min-height: 91vh;
+  height: max-content;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    180deg,
+    rgba(33, 37, 41, 1) 23%,
+    rgba(28, 41, 93, 1) 61%,
+    rgba(41, 25, 111, 1) 93%
+  );
+}
+
+.signup-container {
+  display: flex;
+  align-items: center;
+  width: 75rem;
+  height: 34rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 3px 1px rgb(141, 141, 141);
+}
+
+.signup-img {
+  width: 80%;
+  min-width: 40%;
+  height: 100%;
+}
+
+.signup-inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 60%;
+  height: 100%;
+  padding: 2rem 0.5rem;
+  overflow-y: auto;
+}
+
+.signup-inputs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.signup-inputs-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.signup-input {
+  min-width: 8rem;
+  width: 15rem;
+  margin: 0.5rem 1rem;
+}
+
+#ability-input {
+  position: relative;
+}
+
+.add-ability-btn {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  cursor: pointer;
+}
+.add-ability-btn:hover {
+  color: #aa5ada;
+}
+
+.profile {
+  position: relative;
+}
+
+.profile:hover .add-profile {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile-picture {
+  z-index: 1;
+}
+
+.add-profile {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: rgba(158, 0, 250, 0.37);
+  color: #fff;
+  padding: 1rem 1.3rem;
+  z-index: 20;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
