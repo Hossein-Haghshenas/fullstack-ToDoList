@@ -7,13 +7,11 @@ const {
   deleteUser,
 } = require("../controller/userControl");
 
-const { upload } = require("../middleware/profilePhoto");
-
 const router = Router();
 
 router.get("/admin", getAllUsers);
 router.get("/user/:id", getOneUser);
-router.post("/register", upload.single("profilePicture"), createUser);
+router.post("/register", createUser);
 router.patch("/user/:id", updateUser);
 router.delete("/admin/:id", deleteUser);
 

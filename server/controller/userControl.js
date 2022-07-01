@@ -1,8 +1,8 @@
-const user = require("../model/users");
+const User = require("../model/users");
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await user.find({});
+    const users = await User.find({});
     res.status(200).json({ users });
   } catch (error) {
     res.status(500).json({ msg: error });
@@ -12,7 +12,7 @@ const getAllUsers = async (req, res) => {
 const getOneUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    const targetUser = await user.findById({ _id });
+    const targetUser = await User.findById({ _id });
     res.status(200).json({ targetUser });
   } catch (error) {
     res.status(500).json({ msg: error });
@@ -21,11 +21,9 @@ const getOneUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const newUser = new user({
-      profilePicture: req.file.originalname,
-      ...req.body,
-    });
-    const createNewUser = await user.create(newUser);
+    const newUser = req.body;
+
+    const createNewUser = await User.create(newUser);
     res.status(200).json({ createNewUser });
   } catch (err) {
     res.status(500).json({ msg: err });
@@ -36,7 +34,7 @@ const updateUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const newInfo = req.body;
-    const updateUser = await user.findByIdAndUpdate(
+    const updateUser = await User.findByIdAndUpdate(
       _id,
       {
         ...newInfo,
@@ -55,7 +53,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    const targetUser = await user.findByIdAndRemove({ _id });
+    const targetUser = await User.findByIdAndRemove({ _id });
     res.status(200).json({ targetUser });
   } catch (error) {
     res.status(500).json({ msg: error });
