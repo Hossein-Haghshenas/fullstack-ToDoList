@@ -11,10 +11,12 @@ import {
 import { BiPlus } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { createUser } from "../api/userApi";
+import { convertToBase64 } from "./ImageToBase64";
 
 function RegisterPage() {
   /* profile picture input state*/
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState("");
 
   /* name & family inputs state*/
   const [name, setName] = useState("");
@@ -43,6 +45,32 @@ function RegisterPage() {
   /* adminity input state*/
   const [adminity, setAdminity] = useState(false);
 
+  const submitHandler = () => {
+    const data = {
+      profilePicture: { picture: profile },
+      firstName: name,
+      lastName: family,
+      age: age,
+      language: Object.values(language)[0],
+      githubAddress: github,
+      linkedinAddress: linkedin,
+      abilities: ability,
+      username: username,
+      password: password,
+      adminity: adminity,
+    };
+
+    console.log(data);
+    createUser(data);
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setProfile(base64);
+    console.log({ base64 });
+  };
+
   return (
     <section className="signup-page bg-dark text-secondary p-5">
       <section className="signup-container bg-white">
@@ -62,12 +90,24 @@ function RegisterPage() {
           {/* profile picture row */}
 
           <section className="w-100 d-flex justify-content-center">
-            <input className="d-none" type="file" name="profile" id="profile" />
+            <input
+              className="d-none"
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              name="profile"
+              id="profile"
+              onChange={handleFileUpload}
+            />
+
             <section className="profile">
               <Avatar
                 className="profile-picture"
                 size="xl"
-                src="https://i.pravatar.cc/150?u=a042581f4e25056704b"
+                src={
+                  profile !== ""
+                    ? profile
+                    : "https://i.pravatar.cc/150?u=a042581f4e25056704b"
+                }
                 color="gradient"
                 bordered
               />
@@ -272,20 +312,7 @@ function RegisterPage() {
                 color="gradient"
                 auto
                 ghost
-                onPress={() =>
-                  console.log(
-                    name,
-                    family,
-                    age,
-                    language,
-                    github,
-                    linkedin,
-                    ability,
-                    username,
-                    password,
-                    adminity
-                  )
-                }
+                onPress={submitHandler}
               >
                 Create Account
               </Button>

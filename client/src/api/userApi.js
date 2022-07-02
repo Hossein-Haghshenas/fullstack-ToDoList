@@ -2,10 +2,10 @@ import axios from "axios";
 
 const baseUrl = "https://mytodolistapp2022.herokuapp.com";
 
-const createUser = (user) => {
+const createUser = (data) => {
   try {
     const status = axios
-      .post(`${baseUrl}/register`, user)
+      .post(`${baseUrl}/register`, data)
       .then((data) => data.status === 200 && true);
     return status;
   } catch (error) {
