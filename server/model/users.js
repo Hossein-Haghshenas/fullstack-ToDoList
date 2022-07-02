@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const User = new Schema({
-  profilePicture: String,
+  profilePicture: {
+    picture: String,
+  },
   firstName: String,
   lastName: String,
   age: Number,
