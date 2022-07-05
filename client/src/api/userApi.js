@@ -2,6 +2,15 @@ import axios from "axios";
 
 const baseUrl = "https://mytodolistapp2022.herokuapp.com";
 
+const getUser = (username) => {
+  try {
+    const result = axios.get(`${baseUrl}/user/${username}`).then((res) => res);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createUser = (data) => {
   try {
     const status = axios
@@ -33,4 +42,4 @@ const deleteUser = (id, navigate) => {
   }
 };
 
-export { createUser, deleteUser, updateUser };
+export { getUser, createUser, deleteUser, updateUser };
