@@ -1,4 +1,5 @@
 const User = require("../model/users");
+const bcrypt = require("bcrypt");
 
 const getAllUsers = async (req, res) => {
   try {
@@ -11,8 +12,8 @@ const getAllUsers = async (req, res) => {
 
 const getOneUser = async (req, res) => {
   try {
-    const { id: _id } = req.params;
-    const targetUser = await User.findById({ _id });
+    const { username } = req.params;
+    const targetUser = await User.findOne({ username });
     res.status(200).json({ targetUser });
   } catch (error) {
     res.status(500).json({ msg: error });
@@ -21,7 +22,35 @@ const getOneUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const newUser = req.body;
+    const {
+      profilePicture,
+      firstName,
+      lastName,
+      age,
+      language,
+      githubAddress,
+      linkedinAddress,
+      abilities,
+      username,
+      password,
+      adminity,
+    } = req.body;
+
+    const hashedPass = await bcrypt.hash(password, 15);
+
+    const newUser = await {
+      profilePicture,
+      firstName,
+      lastName,
+      age,
+      language,
+      githubAddress,
+      linkedinAddress,
+      abilities,
+      username,
+      password: hashedPass,
+      adminity,
+    };
 
     const createNewUser = await User.create(newUser);
     res.status(200).json({ createNewUser });
