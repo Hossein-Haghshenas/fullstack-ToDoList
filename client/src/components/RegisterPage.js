@@ -9,12 +9,13 @@ import {
   Text,
 } from "@nextui-org/react";
 import { BiPlus } from "react-icons/bi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
-import { createUser } from "../api/userApi";
+import { signUp } from "../api/authApi";
 import { convertToBase64 } from "./ImageToBase64";
 
 function RegisterPage() {
+  const navigate = useNavigate();
   /* profile picture input state*/
   const [profile, setProfile] = useState("");
 
@@ -61,14 +62,13 @@ function RegisterPage() {
     };
 
     console.log(data);
-    createUser(data);
+    signUp(data).then((result) => result && navigate("/login"));
   };
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     setProfile(base64);
-    console.log({ base64 });
   };
 
   return (
