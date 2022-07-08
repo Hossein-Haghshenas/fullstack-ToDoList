@@ -2,7 +2,8 @@ const TodoList = require("../model/todos");
 
 const getAllTodo = async (req, res) => {
   try {
-    const todos = await TodoList.find({});
+    const { user } = await req.params;
+    const todos = await TodoList.find({ user });
     res.status(200).json({ todos });
   } catch (error) {
     res.status(500).json({ msg: error });
