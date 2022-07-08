@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const TodoSchema = new Schema({
+  user: {
+    type: String,
+    required: true,
+  },
   text: {
     type: String,
     unique: true,

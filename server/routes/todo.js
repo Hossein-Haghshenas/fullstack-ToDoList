@@ -9,9 +9,21 @@ const {
 
 const router = Router();
 
-router.get("/", getAllTodo);
+// Route: /:slag
+// method: GET
+// PUBLIC
+router.get("/:user", getAllTodo);
+// Route: /
+// method: POST
+// PRIVATE
 router.post("/", createTodo);
+// Route: /
+// method: PATCH
+// PRIVATE
 router.patch("/:id", updateTodo);
+// Route: /
+// method: DELETE
+// PRIVATE
 router.delete("/:id", deleteTodo);
 
 module.exports = router;
