@@ -4,7 +4,7 @@ function NoTodoPage({ username }) {
   return (
     <section className="text-center">
       <img
-        className=" w-50"
+        className="notodo-img"
         src={require("../image/undraw_Post_re_mtr4-removebg-preview.png")}
         alt=""
       />

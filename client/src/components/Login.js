@@ -20,6 +20,7 @@ function Login() {
       localStorage.setItem("access_key", res.data.token);
     });
     navigate("/");
+    navigate(0);
     setLoadingMod(false);
   };
 
