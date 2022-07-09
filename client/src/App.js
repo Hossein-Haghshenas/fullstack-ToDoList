@@ -5,6 +5,7 @@ import Container from "./components/Container";
 import History from "./components/History";
 import Login from "./components/Login";
 import RegisterPage from "./components/RegisterPage";
+import ComingSoon from "./components/ComingSoon";
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         />
         <Route path="/history" element={<History searchText={searchText} />} />
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/dashboard" element={<ComingSoon />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
       </Routes>
     </>
