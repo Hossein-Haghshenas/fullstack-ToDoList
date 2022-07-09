@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { getTodo } from "../api/todoApi";
 
 const History = () => {
   const [data, setData] = useState([]);
+  const [status, setStatus] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
-    try {
-      axios
-        .get("https://mytodolistapp2022.herokuapp.com/")
-        .then((res) => setData(res.data.todos));
-    } catch (error) {}
-  }, []);
+    const jwtToken = localStorage.getItem("access_key");
+    const userInfo = jwt_decode(jwtToken);
+    setUser(userInfo.username);
+
+    user &&
+      getTodo(user).then((res) => {
+        setStatus(res.status);
+        setData(res.data.todos);
+      });
+  }, [user]);
 
   return (
     <section className="container">

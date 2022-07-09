@@ -3,8 +3,22 @@ import { Button } from "@nextui-org/react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { BiHome, BiHistory, BiLogIn } from "react-icons/bi";
 import { MdDashboardCustomize } from "react-icons/md";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 const Header = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("access_key");
+    jwtToken && setIsLogin(true);
+    if (jwtToken) {
+      const userInfo = jwt_decode(jwtToken);
+      const expire = Date.now() >= userInfo.exp * 1000 ? false : true;
+      expire && setIsLogin(true);
+    }
+  }, []);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -28,28 +42,35 @@ const Header = () => {
               </NavLink>
             </Button>
 
-            {/* history btn */}
+            {isLogin ? (
+              <>
+                {/* history btn */}
 
-            <Button color="gradient" className="nav-btn" auto ghost>
-              <NavLink to="/history">
-                <span>
-                  <BiHistory></BiHistory>
-                </span>
-                <span>History</span>
-              </NavLink>
-            </Button>
+                <Button color="gradient" className="nav-btn" auto ghost>
+                  <NavLink to="/history">
+                    <span>
+                      <BiHistory></BiHistory>
+                    </span>
+                    <span>History</span>
+                  </NavLink>
+                </Button>
 
-            {/* dashboard btn */}
+                {/* dashboard btn */}
 
-            <Button color="gradient" className="nav-btn" auto ghost>
-              <NavLink to="/dashboard">
-                <span>
-                  <MdDashboardCustomize></MdDashboardCustomize>
-                </span>
-                <span>dashboard</span>
-              </NavLink>
-            </Button>
+                <Button color="gradient" className="nav-btn" auto ghost>
+                  <NavLink to="/dashboard">
+                    <span>
+                      <MdDashboardCustomize></MdDashboardCustomize>
+                    </span>
+                    <span>dashboard</span>
+                  </NavLink>
+                </Button>
+              </>
+            ) : null}
           </Nav>
+
+          {/* login btn */}
+
           <Nav>
             <Button color="gradient" className="nav-btn" auto ghost>
               <NavLink to="/login">
