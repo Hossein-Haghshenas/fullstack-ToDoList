@@ -4,21 +4,18 @@ import { nanoid } from "nanoid";
 import { createTodo } from "../api/todoApi";
 import Filters from "./Filters";
 import NewTodoForm from "./NewTodoForm";
-import jwt_decode from "jwt-decode";
+import { userInfo } from "./AuthChecker";
 
 const AddTodo = ({ statusHandler, searchHandler }) => {
   const navigate = useNavigate();
-  const [callStatus, setCallStatus] = useState(false);
   const [user, setUser] = useState("");
+  const [callStatus, setCallStatus] = useState(false);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("access_key");
-    const userInfo = jwt_decode(jwtToken);
     setUser(userInfo.username);
   }, [user]);
 
   const newTodo = (todoText, todotime) => {
-    console.log(user);
     const setNewTodo = {
       user,
       id: nanoid(),
@@ -30,13 +27,15 @@ const AddTodo = ({ statusHandler, searchHandler }) => {
     createTodo(setNewTodo).then((status) => status && setCallStatus(true));
   };
 
-  if (callStatus === true) {
-    statusHandler(callStatus);
-    navigate(0);
-    setCallStatus(false);
-  } else {
-    statusHandler(callStatus);
-  }
+  useEffect(() => {
+    if (callStatus === true) {
+      statusHandler(callStatus);
+      navigate(0);
+      setCallStatus(false);
+    } else {
+      statusHandler(callStatus);
+    }
+  }, [callStatus]);
 
   return (
     <>
