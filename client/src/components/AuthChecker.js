@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
 const jwtToken = localStorage.getItem("access_key");
-const userInfo = jwt_decode(jwtToken);
+const userInfo = jwtToken && jwt_decode(jwtToken);
 
-export { userInfo };
+export { jwtToken, userInfo };
