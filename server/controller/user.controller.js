@@ -12,8 +12,8 @@ const getAllUsers = async (req, res) => {
 
 const getOneUser = async (req, res) => {
   try {
-    const { username } = req.params;
-    const targetUser = await User.findOne({ username });
+    const { id: _id } = req.params;
+    const targetUser = await User.findById({ _id });
     res.status(200).json({ targetUser });
   } catch (error) {
     res.status(500).json({ msg: error });

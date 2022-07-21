@@ -7,7 +7,6 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState({});
   const [loadingMod, setLoadingMod] = useState(false);
 
   const loginHandler = async () => {

@@ -51,7 +51,7 @@ const TodoList = ({ searchText }) => {
               {data
                 ?.filter((todo) => todo.text.includes(searchText))
                 .map((todo) => {
-                  const { text, _id, time, date, statusColor } = todo;
+                  const { user, text, _id, time, date, statusColor } = todo;
                   return (
                     <Grid key={_id}>
                       <Card
@@ -72,7 +72,7 @@ const TodoList = ({ searchText }) => {
                               </Text>
                             </Grid>
                             <Grid xs={12}>
-                              <Text css={{ color: "$accents8" }}>user</Text>
+                              <Text css={{ color: "$accents8" }}>{user}</Text>
                             </Grid>
                           </Grid.Container>
                         </Card.Header>
