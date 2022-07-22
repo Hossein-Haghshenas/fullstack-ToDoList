@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
 import { AiFillStar } from "react-icons/ai";
 import UpdateTodo from "./UpdateTodo";
 import DeleteTodo from "./DeleteTodo";
 import Timer from "./Timer";
-import { Loading, Grid, Card, Text, Avatar, Col } from "@nextui-org/react";
+import { Loading, Grid, Card, Text, Col } from "@nextui-org/react";
 import { getTodo } from "../api/todoApi";
 import NoTodoPage from "./NoTodoPage";
+import ProfileAvatar from "./ProfileAvatar";
+import { userInfo } from "./AuthChecker";
 
 const TodoList = ({ searchText }) => {
   const [data, setData] = useState([]);
@@ -16,8 +17,6 @@ const TodoList = ({ searchText }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("access_key");
-    const userInfo = jwt_decode(jwtToken);
     setUser(userInfo.username);
 
     user &&
@@ -25,7 +24,7 @@ const TodoList = ({ searchText }) => {
         setStatus(res.status);
         setData(res.data.todos);
       });
-  }, [user]);
+  }, [data]);
 
   const starHandler = (id) => {
     setIsBold(!isBold);
@@ -59,12 +58,7 @@ const TodoList = ({ searchText }) => {
                         style={{ backgroundColor: `${statusColor}` }}
                       >
                         <Card.Header>
-                          <Avatar
-                            size="lg"
-                            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                            color="gradient"
-                            bordered
-                          />
+                          <ProfileAvatar user={user} />
                           <Grid.Container css={{ pl: "$6" }}>
                             <Grid xs={12}>
                               <Text h4 css={{ lineHeight: "$xs" }}>

@@ -4,19 +4,15 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { BiHome, BiHistory, BiLogIn } from "react-icons/bi";
 import { MdDashboardCustomize } from "react-icons/md";
 import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
+import { jwtToken, userInfo } from "./AuthChecker";
+import Profile from "./Header.Profile";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("access_key");
-    jwtToken && setIsLogin(true);
-    if (jwtToken) {
-      const userInfo = jwt_decode(jwtToken);
-      const expire = Date.now() >= userInfo.exp * 1000 ? false : true;
-      expire && setIsLogin(true);
-    }
+    const expire = userInfo && Date.now() >= userInfo.exp * 1000 ? false : true;
+    jwtToken && expire && setIsLogin(true);
   }, []);
 
   return (
@@ -72,14 +68,18 @@ const Header = () => {
           {/* login btn */}
 
           <Nav>
-            <Button color="gradient" className="nav-btn" auto ghost>
-              <NavLink to="/login">
-                <span>
-                  <BiLogIn></BiLogIn>
-                </span>
-                <span>Login</span>
-              </NavLink>
-            </Button>
+            {isLogin ? (
+              <Profile />
+            ) : (
+              <Button color="gradient" className="nav-btn" auto ghost>
+                <NavLink to="/login">
+                  <span>
+                    <BiLogIn></BiLogIn>
+                  </span>
+                  <span>Login</span>
+                </NavLink>
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

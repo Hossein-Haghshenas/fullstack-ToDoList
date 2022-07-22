@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import jwt_decode from "jwt-decode";
 import { getTodo } from "../api/todoApi";
+import { userInfo } from "./AuthChecker";
 
 const History = () => {
   const [data, setData] = useState([]);
@@ -9,8 +9,6 @@ const History = () => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("access_key");
-    const userInfo = jwt_decode(jwtToken);
     setUser(userInfo.username);
 
     user &&

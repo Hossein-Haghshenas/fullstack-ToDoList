@@ -2,8 +2,8 @@ import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 import { useEffect, useState } from "react";
 import { Loading, Grid } from "@nextui-org/react";
-import jwt_decode from "jwt-decode";
 import HomePage from "./HomePage";
+import { jwtToken, userInfo } from "./AuthChecker";
 
 const Container = ({ searchHandler, searchText }) => {
   const [callStatus, setCallStatus] = useState(false);
@@ -11,13 +11,8 @@ const Container = ({ searchHandler, searchText }) => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("access_key");
-    jwtToken && setIsLogin(true);
-    if (jwtToken) {
-      const userInfo = jwt_decode(jwtToken);
-      const expire = Date.now() >= userInfo.exp * 1000 ? false : true;
-      expire && setIsLogin(true);
-    }
+    const expire = userInfo && Date.now() >= userInfo.exp * 1000 ? false : true;
+    jwtToken && expire && setIsLogin(true);
   }, []);
 
   return (
