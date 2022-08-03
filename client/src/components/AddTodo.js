@@ -15,10 +15,11 @@ const AddTodo = ({ statusHandler, searchHandler }) => {
     setUser(userInfo.username);
   }, [user]);
 
-  const newTodo = (todoText, todotime) => {
+  const newTodo = (todoTitle, todoText, todotime) => {
     const setNewTodo = {
       user,
       id: nanoid(),
+      title: todoTitle,
       text: todoText,
       time: todotime,
       date: new Date(),

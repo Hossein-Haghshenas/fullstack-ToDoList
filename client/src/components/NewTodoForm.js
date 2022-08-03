@@ -14,6 +14,7 @@ const NewTodoForm = ({ newTodo }) => {
 
   const [inputVisible, setInputVisible] = useState(false);
   const [newTodoText, setNewTodoText] = useState("");
+  const [newTodoTitle, setNewTodoTitle] = useState("");
   const [newTodoTime, setNewTodoTime] = useState(0);
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
@@ -26,16 +27,18 @@ const NewTodoForm = ({ newTodo }) => {
   };
 
   const handleSubmit = () => {
-    newTodoText !== ""
-      ? newTodo(newTodoText, newTodoTime)
+    newTodoText !== "" && newTodoTitle !== ""
+      ? newTodo(newTodoTitle, newTodoText, newTodoTime)
       : alert("Please enter something !");
     setNewTodoText("");
+    setNewTodoTitle("");
     closeHandler();
   };
 
   const closeHandler = () => {
     setVisible(false);
     setNewTodoText("");
+    setNewTodoTitle("");
     setNewTodoTime(0);
   };
 
@@ -75,6 +78,17 @@ const NewTodoForm = ({ newTodo }) => {
             placeholder="Todo Text"
             value={newTodoText}
             onChange={(e) => setNewTodoText(e.target.value)}
+          />
+          <Input
+            aria-label="todo Title"
+            clearable
+            bordered
+            fullWidth
+            color="secondary"
+            size="lg"
+            placeholder="Todo Title"
+            value={newTodoTitle}
+            onChange={(e) => setNewTodoTitle(e.target.value)}
           />
           <Row>
             <Input
