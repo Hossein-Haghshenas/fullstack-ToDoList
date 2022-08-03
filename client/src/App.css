@@ -55,7 +55,7 @@
 }
 
 .get-start-btn button:hover {
-  background: #29196f;
+  background: #543fadc0;
   color: white;
   box-shadow: 0 0 10px 1px #00000096;
 }
@@ -291,8 +291,8 @@
 }
 
 .signup-input {
-  min-width: 8rem;
-  width: 15rem;
+  min-width: 8rem !important;
+  width: 15rem !important;
   margin: 0.5rem 1rem;
 }
 
@@ -314,11 +314,6 @@
   position: relative;
 }
 
-.profile:hover .add-profile {
-  opacity: 1;
-  cursor: pointer;
-}
-
 .profile-picture {
   z-index: 1;
 }
@@ -330,10 +325,15 @@
   background: rgba(158, 0, 250, 0.37);
   color: #fff;
   padding: 1rem 1.3rem;
-  z-index: 20;
+  z-index: 999 !important;
   border-radius: 50%;
   opacity: 0;
   transition: all 0.5s ease;
+}
+
+.profile:hover .add-profile {
+  opacity: 1;
+  cursor: pointer;
 }
 
 /* no todo page */
