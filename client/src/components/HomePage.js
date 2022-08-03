@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 
 function HomePage() {
@@ -17,8 +18,10 @@ function HomePage() {
           <section className="mt-2">
             <h5>Done your tasks cool and powerful</h5>
           </section>
-          <section className="get-start-btn mt-4">
-            <button>Get Start Now !</button>
+          <section className="get-start-btn my-5">
+            <Link to={"/login"}>
+              <button>Get Start Now !</button>
+            </Link>
           </section>
         </section>
       </section>

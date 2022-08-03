@@ -239,7 +239,7 @@ function RegisterPage() {
               ></BiPlus>
             </Grid>
 
-            <Grid.Container gap={2} justify="center" className="signup-input">
+            <Grid.Container justify="center" className="signup-input">
               {ability.map((item) => (
                 <Button
                   className="m-1"

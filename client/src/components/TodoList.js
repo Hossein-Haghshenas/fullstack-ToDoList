@@ -24,7 +24,7 @@ const TodoList = ({ searchText }) => {
         setStatus(res.status);
         setData(res.data.todos);
       });
-  }, [data]);
+  }, [user]);
 
   const starHandler = (id) => {
     setIsBold(!isBold);
